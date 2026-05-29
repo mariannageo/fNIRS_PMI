@@ -1,163 +1,218 @@
-fNIRS_PMI
-A reproducible end-to-end workflow for a real-time fNIRS neurofeedback experiment targeting emotion regulation, including an offline analysis pipeline for statistical evaluation and visualization.
-This repository accompanies the manuscript:
-“Targeting emotion regulation with fNIRS neurofeedback training – a feasibility study in healthy participants”
-It integrates all components required for:
-Data acquisition
-Real-time neurofeedback
-Offline preprocessing
-GLM-based statistical analysis
-Visualization and figure generation
-1. Project Overview
-The project is organized into two main modules:
-online-scripts-main/ → real-time experiment pipeline
-offline-scripts-main/ → offline analysis pipeline
-1.1 Online Pipeline (Real-time Experiment)
-The online-scripts-main/ directory includes scripts for:
-Experimental presentation
-Data acquisition
-Neurofeedback computation
-Threshold estimation
-Helper functions (GLM, preprocessing utilities, visualization parameters)
-Main scripts
-EXP_00_FAMILIARIZATION_RUN.m
-PMI_EXP_01_LOCALIZER.m
-PMI_EXP_02_NFB_PREPARATION.m
-PMI_EXP_03_NFB.m
-1.2 Offline Pipeline (Analysis)
-The offline-scripts-main/ directory contains scripts for:
-Signal preprocessing
-GLM analysis
-Statistical evaluation
-Visualization
-Entry-point scripts
-TSI_Data_Analysis_loc.m
-TSI_Data_Analysis_NFB.m
+# A Reproducible Workflow for Real-Time fNIRS Neurofeedback for Emotion Regulation and Offline Analysis
+
+This technical note presents a reproducible end-to-end workflow for a functional near-infrared spectroscopy (fNIRS) neurofeedback experiment targeting emotion regulation. The pipeline supports the feasibility study:
+
+**“Targeting emotion regulation with fNIRS neurofeedback training – a feasibility study in healthy participants”**
+
+It integrates all hardware and software components required for:
+- data acquisition
+- real-time processing
+- offline analysis
+- visualization
+
+The workflow is designed to support reproducibility and adaptation to related fNIRS neurofeedback and affective neuroscience applications.
+
+---
+
+## 1. Project Organization
+
+The project consists of two main modules:
+
+- `online-scripts-main/` → real-time experimental pipeline  
+- `offline-scripts-main/` → offline analysis pipeline  
+
+The online module contains scripts for:
+- experiment presentation
+- data acquisition
+- threshold computation
+- neurofeedback delivery
+- helper functions
+
+During acquisition, raw data from Localizer and NFB sessions are stored in:
+
+`offline-scripts-main/data/Raw/`
+
+TSI-processed outputs are stored in:
+
+`offline-scripts-main/data/online_processed_TSI_data/`
+
+including HbO and HbR signals for short- and long-separation channels.
+
+---
+
+### Entry-point offline scripts
+
+- `TSI_Data_Analysis_loc.m`  
+- `TSI_Data_Analysis_NFB.m`  
+
 These scripts:
-Process Turbo-Satori (TSI) outputs
-Perform GLM analysis using NIRS Brain AnalyzIR Toolbox
-Export beta values for statistical testing
-2. Repository Structure
-fNIRS_PMI/
+- process TSI time series
+- run GLM analysis (NIRS Brain AnalyzIR Toolbox)
+- export beta values
+
+---
+
+### Recommended project structure
+PMI_Project/
 ├── online-scripts-main/
-│   ├── EXP_00_FAMILIARIZATION_RUN.m
-│   ├── PMI_EXP_01_LOCALIZER.m
-│   ├── PMI_EXP_02_NFB_PREPARATION.m
-│   ├── PMI_EXP_03_NFB.m
-│   └── helper_functions/
+│ ├── EXP_00_FAMILIARIZATION_RUN.m
+│ ├── PMI_EXP_01_LOCALIZER.m
+│ ├── PMI_EXP_02_NFB_PREPARATION.m
+│ ├── PMI_EXP_03_NFB.m
+│ └── helper_functions/
 │
 └── offline-scripts-main/
-    ├── data/
-    │   ├── Raw/
-    │   │   ├── Localizer/
-    │   │   └── NFB/
-    │   │
-    │   └── online_processed_TSI_data/
-    │       ├── Localizer/
-    │       └── NFB/
-    │
-    ├── lib_tsi/
-    ├── plotting_tsi/
-    ├── paper_figures_code/
-    ├── paper_figures_data/
-    ├── Questionnaires/
-    ├── statistical_analysis_with_Jamovi/
-    ├── post-processed_tsi_data/
-    ├── TSI_Data_Analysis_loc.m
-    └── TSI_Data_Analysis_NFB.m
-3. Software Requirements
-The workflow was implemented across two systems.
-3.1 Laptop A — Acquisition & Offline Analysis
+├── data/
+│ ├── Raw/
+│ │ ├── Localizer/
+│ │ └── NFB/
+│ └── online_processed_TSI_data/
+│ ├── Localizer/
+│ └── NFB/
+│
+├── lib_tsi/
+├── plotting_tsi/
+├── paper_figures_code/
+├── paper_figures_data/
+├── Questionnaires/
+├── statistical_analysis_with_Jamovi/
+├── post-processed_tsi_data/
+├── TSI_Data_Analysis_loc.m
+└── TSI_Data_Analysis_NFB.m
+
+
+---
+
+## 2. Software Dependencies
+
+The workflow was implemented on two separate laptops.
+
+### Laptop A (acquisition + offline analysis)
+
+- Aurora 2023.9 (NIRSport 2)
+- MATLAB R2021b
+- NIRS Brain AnalyzIR Toolbox
+- QT-NIRS Toolbox (optional)
+- Windows 10
+
 Used for:
-fNIRS acquisition
-Neurofeedback preparation
-Offline analysis
-Software:
-Aurora 2023.9 (NIRSport 2)
-MATLAB R2021b
-NIRS Brain AnalyzIR Toolbox
-Optional: QT-NIRS Toolbox
-Windows 10
-3.2 Laptop B — Experiment & Real-time Processing
+- fNIRS acquisition
+- neurofeedback preparation
+- offline analysis
+
+---
+
+### Laptop B (real-time experiment)
+
+- Turbo-Satori 2.0 (TSI; Lührs & Goebel, 2017)
+- Psychtoolbox-3 (Pelli, 1997)
+- MATLAB R2018a
+- Windows 10
+
 Used for:
-Localizer task
-Neurofeedback task
-Real-time signal processing
-Software:
-Turbo-Satori 2.0 (TSI)
-Psychtoolbox-3
-MATLAB R2018a
-Windows 10
-4. Data Acquisition Workflow
-fNIRS data were acquired using NIRSport 2 and Aurora software.
-4.1 System Setup
-NIRSport 2 connected to Laptop A (Aurora control)
-Ethernet connection between Laptop A and Laptop B for real-time streaming
-4.2 Experimental Stages
-1. Localizer
-Script: PMI_EXP_01_LOCALIZER.m
-Raw data stored in: data/Raw/Localizer/
-TSI outputs stored in: data/online_processed_TSI_data/Localizer/
-2. Neurofeedback Preparation
-Script: PMI_EXP_02_NFB_PREPARATION.m
-Computes:
-Subject-specific thresholds
-Optimal 3 neurofeedback channels
-3. Neurofeedback Training
-Script: PMI_EXP_03_NFB.m
-Uses:
-Precomputed thresholds
-Selected channels
-Records:
-HbO / HbR signals
-Feedback states
-Threshold dynamics
-5. Offline Analysis Pipeline
-Offline analysis uses:
-TSI_Data_Analysis_loc.m
-TSI_Data_Analysis_NFB.m
-NIRS Brain AnalyzIR Toolbox
-5.1 Preprocessing Steps
-Conversion to HbO / HbR
-Standardization across participants
-Intermediate outputs:
-preprocessing_PMI_localizer_offline.mat
-preprocessing_PMI_NFB_offline.mat
-5.2 GLM Analysis
-Produces:
-GLM_PMI_offline.mat
+- localizer task
+- neurofeedback task
+- real-time signal processing
+
+---
+
+## 3. Data Acquisition Workflow
+
+fNIRS data were recorded using NIRSport 2 with Aurora software.
+
+### System setup
+- NIRSport 2 controlled via Laptop A
+- Ethernet connection between laptops for real-time streaming
+
+---
+
+### Experimental stages
+
+#### Localizer
+- Script: `PMI_EXP_01_LOCALIZER.m`
+- Raw data: `data/Raw/`
+- TSI output: `data/online_processed_TSI_data/`
+
+---
+
+#### Neurofeedback preparation
+- Script: `PMI_EXP_02_NFB_PREPARATION.m`
+- Computes:
+  - subject-specific thresholds
+  - 3 optimal neurofeedback channels
+
+---
+
+#### Neurofeedback training
+- Script: `PMI_EXP_03_NFB.m`
+- Uses precomputed thresholds and channels
+- Records HbO/HbR signals, thresholds, and feedback state
+
+---
+
+## 4. Offline Analysis
+
+Two MATLAB pipelines:
+
+- `TSI_Data_Analysis_loc.m`
+- `TSI_Data_Analysis_NFB.m`
+
+### Processing steps
+- HbO/HbR conversion
+- Maintain of rest-task related periods
+- GLM modeling (NIRS Brain AnalyzIR Toolbox)
+
+### Intermediate outputs
+- `preprocessing_PMI_localizer_offline.mat`
+- `preprocessing_PMI_NFB_offline.mat`
+
+### Final GLM output
+- `GLM_PMI_offline.mat`
+
 Stored in:
-offline-scripts-main/post-processed_tsi_data/
-6. Beta Extraction & Statistical Analysis
-6.1 Beta Extraction
+`offline-scripts-main/post-processed_tsi_data/`
+
+---
+
+## 5. GLM Beta Extraction and Visualization
+
+### Beta extraction
 Script:
-extract_betas.m
+- `extract_betas.m`
+
 Outputs:
-hbr_betas_average_NFB_channs.xlsx
-hbo_betas_average_NFB_channs.xlsx
-Location:
-offline-scripts-main/paper_figures_data/
-6.2 Figure Generation Scripts
-Figure 3A & 3B
-plot_betas_and_controlability_measures_fig3a_b.m
-Uses:
-beta values
-subjective controllability questionnaire
-Figure 4
-cor_loc_nfb_fig4.m
-Computes Spearman correlation between Localizer and NFB betas
-Figure 3C
-plot_percentage_of_ratios_fig3c.m
-Uses:
-table_ratios_S1.mat
-table_ratios_S2.mat
-table_ratios_S3.mat
-Ratio Computation
-table_ratios_run_level_NFBchans.m
-Reconstructs real-time signal-to-threshold logic
-Additional Analysis Scripts
-cerq_descriptives_statistics.m
-erq_descriptives_statistics.m
-ders_descriptives_statistics.m
-pre_post_coordinates_stormnet.m
-ratios_6seconds_after_task_participant_run_level.m
+- `hbo_betas_average_NFB_channs.xlsx`
+- `hbr_betas_average_NFB_channs.xlsx`
+
+Stored in:
+`offline-scripts-main/paper_figures_data/`
+
+---
+
+### Figure generation scripts
+
+- `plot_betas_and_controlability_measures_fig3a_b.m`
+- `cor_loc_nfb_fig4.m`
+- `plot_percentage_of_ratios_fig3c.m`
+- `table_ratios_run_level_NFBchans.m`
+
+---
+
+### Additional analyses
+
+- CERQ / ERQ / DERS descriptive statistics  
+- `pre_post_coordinates_stormnet.m` (STORM-Net cap displacement analysis)  
+- `ratios_6seconds_after_task_participant_run_level.m`  
+
+---
+
+
+## 7. Data Availability
+
+
+
+## 8. Citation
+
+If you use this repository, please cite:
+
+**Targeting emotion regulation with fNIRS neurofeedback training – feasibility study in healthy participants**
