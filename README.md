@@ -3,6 +3,8 @@
 A reproducible end-to-end workflow for a functional near-infrared spectroscopy (fNIRS) neurofeedback experiment targeting emotion regulation. The pipeline supports the feasibility study:
 
 **“Targeting emotion regulation with fNIRS neurofeedback training – a feasibility study in healthy participants”**
+https://osf.io/9wafh/overview
+
 
 It integrates all hardware and software components required for:
 - data acquisition
@@ -210,8 +212,7 @@ Stored in:
 
 
 ## 7. Data Availability
-
-
+https://osf.io/9wafh/overview
 
 ## 8. Citation
 
