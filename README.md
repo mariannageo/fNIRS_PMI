@@ -1,6 +1,6 @@
 # A Reproducible Workflow for Real-Time fNIRS Neurofeedback for Emotion Regulation and Offline Analysis
 
-This technical note presents a reproducible end-to-end workflow for a functional near-infrared spectroscopy (fNIRS) neurofeedback experiment targeting emotion regulation. The pipeline supports the feasibility study:
+A reproducible end-to-end workflow for a functional near-infrared spectroscopy (fNIRS) neurofeedback experiment targeting emotion regulation. The pipeline supports the feasibility study:
 
 **“Targeting emotion regulation with fNIRS neurofeedback training – a feasibility study in healthy participants”**
 
