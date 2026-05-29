@@ -52,34 +52,36 @@ These scripts:
 
 ---
 
-### Recommended project structure
+## Recommended project structure
+
+```text
 PMI_Project/
 ├── online-scripts-main/
-│ ├── EXP_00_FAMILIARIZATION_RUN.m
-│ ├── PMI_EXP_01_LOCALIZER.m
-│ ├── PMI_EXP_02_NFB_PREPARATION.m
-│ ├── PMI_EXP_03_NFB.m
-│ └── helper_functions/
+│   ├── EXP_00_FAMILIARIZATION_RUN.m
+│   ├── PMI_EXP_01_LOCALIZER.m
+│   ├── PMI_EXP_02_NFB_PREPARATION.m
+│   ├── PMI_EXP_03_NFB.m
+│   └── helper_functions/
 │
 └── offline-scripts-main/
-├── data/
-│ ├── Raw/
-│ │ ├── Localizer/
-│ │ └── NFB/
-│ └── online_processed_TSI_data/
-│ ├── Localizer/
-│ └── NFB/
-│
-├── lib_tsi/
-├── plotting_tsi/
-├── paper_figures_code/
-├── paper_figures_data/
-├── Questionnaires/
-├── statistical_analysis_with_Jamovi/
-├── post-processed_tsi_data/
-├── TSI_Data_Analysis_loc.m
-└── TSI_Data_Analysis_NFB.m
-
+    ├── data/
+    │   ├── Raw/
+    │   │   ├── Localizer/
+    │   │   └── NFB/
+    │   └── online_processed_TSI_data/
+    │       ├── Localizer/
+    │       └── NFB/
+    │
+    ├── lib_tsi/
+    ├── plotting_tsi/
+    ├── paper_figures_code/
+    ├── paper_figures_data/
+    ├── Questionnaires/
+    ├── statistical_analysis_with_Jamovi/
+    ├── post-processed_tsi_data/
+    ├── TSI_Data_Analysis_loc.m
+    └── TSI_Data_Analysis_NFB.m
+```
 
 ---
 
